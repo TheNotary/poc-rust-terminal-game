@@ -1,0 +1,20 @@
+[package]
+name = 'poc-wasmer-package-demo'
+version = '0.1.0'
+description = 'Description for package poc-wasmer-package-demo'
+
+# See more keys and definitions at https://docs.wasmer.io/registry/manifest
+
+[[module]]
+name = 'game'
+source = 'target/wasm32-wasip1/debug/rust-terminal-game.wasm'
+abi = 'wasi'
+
+[module.interfaces]
+wasi = '0.1.0-unstable'
+
+[[command]]
+name = 'game'
+module = 'game'
+runner = 'wasi'
+#runner = "https://webc.org/runner/emscripten"
