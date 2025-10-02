@@ -22,11 +22,11 @@ fn main() -> io::Result<()> {
 
         // Read a single byte
         let mut buf = [0u8; 1];
-        if stdin.read(&mut buf)? == 0 {
+        if stdin.read(&mut buf)? == 0 { // if stdin is closed, this allows us to close gracefully?
             break;
         }
 
-        // Clear current position before moving
+        // Clear the current cursor position before drawing in new location
         print!("\x1b[{};{}H ", y, x);
 
         // Check for escape sequences (arrow keys)
@@ -45,7 +45,7 @@ fn main() -> io::Result<()> {
                 }
             }
         } else if buf[0] == b'q' || buf[0] == 3 {
-            // Quit on 'q' or Ctrl+C
+            // Quit on 'q' or Ctrl+C (on mac, ctrl+c doesn't trigger,, maybe on windows?)
             break;
         }
     }
@@ -53,6 +53,7 @@ fn main() -> io::Result<()> {
     // Restore terminal
     disable_raw_mode()?;
     print!("\x1b[2J\x1b[H\x1b[?25h");
+    print!("KTHXBYE\n");
     stdout.flush()?;
 
     Ok(())
