@@ -14,3 +14,15 @@ wasmer run .
 ```
 
 
+## Notes
+
+So, It was good to build this. I stopped as far as realizing that WebAssembly does not support setting the standard in in a raw mode... 
+
+I read somewhere that you can set the raw mode on the host side. So that would be X term. I guess I should Google that now.
+
+So... according to [wasix.org](https://wasix.org/) the point of WASIX is to fill gaps in wasm,
+
+> WASIX provides functions to control Terminal I/O.
+
+I'm not sure what that means but I guess I should ask an actual human?
+
