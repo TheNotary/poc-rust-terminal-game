@@ -1,4 +1,6 @@
 [package]
+name = "thenotary/rust-terminal-game"
+version = '0.1.0'
 entrypoint = "game"
 
 # See more keys and definitions at https://docs.wasmer.io/registry/manifest
