@@ -1,9 +1,13 @@
 # Terminal Game
 
-I'm Trying to Learn how Terminal Programs Talk to Terminals
+I'm learning how terminal programs talk to the terminal.  Running this program will place a cursor on the terminal.  The arrow keys can move that cursor.  Pressing 'q' or ctrl+c ends the experience.
 
 
-https://claude.ai/chat/356b533c-dc7f-496c-8dd1-781afed193ec
+## Run the program natively
+
+```
+cargo run
+```
 
 
 ## Build and run the WASM
@@ -28,4 +32,6 @@ So... according to [wasix.org](https://wasix.org/) the point of WASIX is to fill
 > WASIX provides functions to control Terminal I/O.
 
 I'm not sure what that means but I guess I should ask an actual human?
+
+More documentation here: https://wasix.org/docs/explanation/extensions-to-wasi#wasix-extended-functions
 
