@@ -20,6 +20,8 @@ cargo wasix build --release
 wasmer run .
 ```
 
+There is a bug, you need to press enter after you press an enter key.  
+
 
 ## Notes
 
