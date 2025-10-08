@@ -7,7 +7,8 @@ entrypoint = "game"
 
 [[module]]
 name = 'game'
-source = './target/wasm32-wasip1/debug/rust-terminal-game.wasm'
+#source = './target/wasm32-wasip1/debug/rust-terminal-game.wasm'
+source = './target/wasm32-wasmer-wasi/release/rust-terminal-game.wasm'
 
 [[command]]
 name = 'game'

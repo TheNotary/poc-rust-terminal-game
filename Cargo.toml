@@ -7,4 +7,8 @@ edition = "2024"
 libc = "0.2"
 
 [patch.crates-io]
-libc = { git = "https://github.com/wasix-org/libc", branch = "master" }
+# libc = { git = "https://github.com/thenotary/libc", branch = "allow-basic-tcgetattr" }
+libc = { path = "../../open_source/libc" }
+
+[patch."https://github.com/wasix-org/libc"]
+libc = { git = "https://github.com/thenotary/libc", branch = "allow-basic-tcgetattr" }

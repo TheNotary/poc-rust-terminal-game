@@ -22,7 +22,8 @@ fn main() -> io::Result<()> {
 
         // Read a single byte
         let mut buf = [0u8; 1];
-        if stdin.read(&mut buf)? == 0 { // if stdin is closed, this allows us to close gracefully?
+        if stdin.read(&mut buf)? == 0 {
+            // if stdin is closed, this allows us to close gracefully?
             break;
         }
 
@@ -37,10 +38,10 @@ fn main() -> io::Result<()> {
 
             if seq[0] == b'[' {
                 match seq[1] {
-                    b'A' => y = y.saturating_sub(1).max(1),  // Up
-                    b'B' => y = (y + 1).min(24),             // Down
-                    b'C' => x = (x + 1).min(80),             // Right
-                    b'D' => x = x.saturating_sub(1).max(1),  // Left
+                    b'A' => y = y.saturating_sub(1).max(1), // Up
+                    b'B' => y = (y + 1).min(24),            // Down
+                    b'C' => x = (x + 1).min(80),            // Right
+                    b'D' => x = x.saturating_sub(1).max(1), // Left
                     _ => {}
                 }
             }
@@ -60,7 +61,7 @@ fn main() -> io::Result<()> {
 }
 
 fn enable_raw_mode() -> io::Result<()> {
-    #[cfg(unix)]
+    #[cfg(any(unix, target_family = "wasm"))]
     {
         use std::os::unix::io::AsRawFd;
         let fd = io::stdin().as_raw_fd();
@@ -84,35 +85,11 @@ fn enable_raw_mode() -> io::Result<()> {
             }
         }
     }
-
-    // this is probably not the way
-    // #[cfg(target_family = "wasm")]
-    // {
-    //     let fd = io::stdin();
-    //     let mut termios = std::mem::MaybeUninit::<libc::termios>::uninit();
-    //     unsafe {
-    //         if libc::tcgetattr(fd, termios.as_mut_ptr()) != 0 {
-    //             return Err(io::Error::last_os_error());
-    //         }
-    //         let mut termios = termios.assume_init();
-
-    //         // Disable canonical mode and echo
-    //         termios.c_lflag &= !(libc::ICANON | libc::ECHO);
-
-    //         // Set minimum characters to return and timeout
-    //         termios.c_cc[libc::VMIN] = 1;
-    //         termios.c_cc[libc::VTIME] = 0;
-
-    //         if libc::tcsetattr(fd, libc::TCSANOW, &termios) != 0 {
-    //             return Err(io::Error::last_os_error());
-    //         }
-    //     }
-    // }
     Ok(())
 }
 
 fn disable_raw_mode() -> io::Result<()> {
-    #[cfg(unix)]
+    #[cfg(any(unix, target_family = "wasm"))]
     {
         use std::os::unix::io::AsRawFd;
         let fd = io::stdin().as_raw_fd();

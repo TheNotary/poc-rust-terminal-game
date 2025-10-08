@@ -5,7 +5,6 @@ version = 4
 [[package]]
 name = "libc"
 version = "0.2.151"
-source = "git+https://github.com/wasix-org/libc?branch=master#2c0250f5adab47f99d94ef80e82a87f7dfe5e8f5"
 
 [[package]]
 name = "rust-terminal-game"
@@ -13,3 +12,8 @@ version = "0.1.0"
 dependencies = [
  "libc",
 ]
+
+[[patch.unused]]
+name = "libc"
+version = "0.2.151"
+source = "git+https://github.com/thenotary/libc?branch=allow-basic-tcgetattr#c557b7697b455a015fbfd3f2772042ed3e18aef1"
